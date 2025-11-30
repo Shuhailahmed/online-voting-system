@@ -1,0 +1,788 @@
+/* Tailwind base (keep these at the top if you are using Tailwind) */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* -------------------- Global / Layout -------------------- */
+
+:root {
+  --bg-page: #f3f6ff;
+  --bg-card: #ffffff;
+  --bg-card-soft: rgba(255, 255, 255, 0.96);
+  --border-soft: #e5e7eb;
+  --text-main: #111827;
+  --text-sub: #6b7280;
+  --primary: #2563eb;
+  --primary-soft: #eff4ff;
+  --primary-dark: #1d4ed8;
+  --danger: #ef4444;
+  --danger-soft: #fee2e2;
+  --radius-lg: 1rem;
+  --shadow-soft: 0 18px 35px rgba(15, 23, 42, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--text-main);
+  background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.4),
+      rgba(243, 246, 255, 0.45)
+    ),
+    url("/images/bg-vote.jpg") no-repeat center top;
+  background-size: cover;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  max-width: 1120px;
+  padding: 1.5rem;
+  margin: 0 auto;
+  flex: 1;
+}
+
+/* -------------------- Navbar -------------------- */
+
+.navbar {
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(209, 213, 219, 0.7);
+  padding: 0.75rem 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.navbar-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 0.6rem;
+}
+
+.nav-brand-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 20%, #60a5fa, #2563eb);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.4);
+}
+
+.nav-brand-text {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #111827;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.nav-link {
+  color: #4b5563;
+  text-decoration: none;
+  font-size: 0.93rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: 999px;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+.nav-link:hover {
+  background: #e5edff;
+  color: #111827;
+}
+
+.nav-link.active {
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+  font-weight: 500;
+}
+
+/* -------------------- Footer -------------------- */
+
+.footer {
+  text-align: center;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.96);
+  border-top: 1px solid rgba(209, 213, 219, 0.6);
+  color: #6b7280;
+  font-size: 0.85rem;
+}
+
+/* -------------------- Card / Sections -------------------- */
+
+/* -------------------------------
+   USER DASHBOARD UI UPGRADE
+--------------------------------*/
+
+/* Main cards */
+.card {
+  background: #ffffffcc;
+  backdrop-filter: blur(10px);
+  border-radius: 14px;
+  padding: 1.5rem 1.8rem;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.06);
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(226, 232, 240, 0.6);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.09);
+}
+
+/* Section Titles */
+.card-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.card-subtitle {
+  font-size: 0.95rem;
+  color: #6b7280;
+  margin-top: 0.3rem;
+}
+
+/* Header inside hero card */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+/* Grid layout for two columns */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+/* Active Elections Card Beautification */
+.card ul,
+.card li {
+  list-style: none;
+}
+
+/* ElectionCard wrapper spacing */
+.card .election-card {
+  margin-top: 1rem;
+}
+
+/* Subtle hover highlight for election list */
+.election-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1rem;
+  background: #f9fafb;
+  transition: all 0.15s ease;
+}
+
+.election-card:hover {
+  background: #f3f4f6;
+  border-color: #cbd5e1;
+}
+
+/* Overview Stats List */
+.card ul {
+  margin-top: 1rem;
+  padding-left: 0.7rem;
+}
+
+.card ul li {
+  padding: 0.4rem 0;
+  font-size: 0.95rem;
+  color: #4b5563;
+  border-left: 3px solid transparent;
+  padding-left: 0.8rem;
+  transition: all 0.15s ease;
+}
+
+.card ul li:hover {
+  background: #f1f5f9;
+  border-left: 3px solid #2563eb;
+  border-radius: 4px;
+}
+
+/* Number Highlights */
+.card strong {
+  font-weight: 700;
+}
+
+.card strong:nth-child(1) {
+  color: #3b82f6;
+}
+
+.card strong:nth-child(2) {
+  color: #8b5cf6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* -------------------- Buttons -------------------- */
+
+.btn {
+  border: none;
+  border-radius: 999px;
+  padding: 0.55rem 1.25rem;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.1s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.4);
+}
+
+.btn.small {
+  padding: 0.35rem 0.9rem;
+  font-size: 0.8rem;
+}
+
+.btn.secondary {
+  background: #e5e7eb;
+  color: #111827;
+  box-shadow: none;
+}
+
+.btn.secondary:hover {
+  background: #d1d5db;
+}
+
+.btn.danger {
+  background: var(--danger);
+  box-shadow: 0 10px 25px rgba(239, 68, 68, 0.35);
+}
+
+.btn.danger:hover {
+  background: #dc2626;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* -------------------- Inputs / Forms -------------------- */
+
+.input,
+.select,
+textarea.input {
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  border-radius: 0.75rem;
+  border: 1px solid #d1d5db;
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+  background: rgba(249, 250, 251, 0.95);
+  transition: border-color 0.12s ease, box-shadow 0.12s ease,
+    background-color 0.12s ease;
+}
+
+.input::placeholder,
+textarea.input::placeholder {
+  color: #9ca3af;
+}
+
+.input:focus,
+.select:focus,
+textarea.input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.2);
+  background: #ffffff;
+}
+
+/* smaller helper text */
+.help-text {
+  font-size: 0.8rem;
+  color: var(--text-sub);
+}
+
+/* -------------------- Grid / Utility -------------------- */
+
+.grid-2 {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .grid-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* center auth forms (login / register / admin login) */
+.auth-wrapper {
+  min-height: calc(100vh - 140px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-card {
+  max-width: 440px;
+  width: 100%;
+}
+
+/* spacing for links in result / list sections */
+.list-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* -------------------- Dashboard / Stats -------------------- */
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.stat-card {
+  background: linear-gradient(
+    135deg,
+    rgba(239, 246, 255, 0.97),
+    rgba(238, 242, 255, 0.98)
+  );
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.2rem;
+  border: 1px solid #e5e7eb;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--text-sub);
+}
+
+.stat-value {
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin-top: 0.3rem;
+  color: #1d4ed8;
+}
+
+/* -------------------- Badges / Pills -------------------- */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.75rem;
+  border-radius: 999px;
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.badge.success {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.badge.warning {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.badge.info {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+/* -------------------- Result list / tables -------------------- */
+
+/* ---------- Results page ---------- */
+
+.results-page {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.results-header h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.results-subtitle {
+  margin-top: 0.35rem;
+  font-size: 0.95rem;
+  color: #6b7280;
+}
+
+.results-filter-card {
+  max-width: 520px;
+  margin-top: 1rem;
+}
+
+.results-filter-row {
+  display: flex;
+  gap: 0.7rem;
+  margin-top: 0.5rem;
+}
+
+.results-filter-row .select {
+  flex: 1;
+}
+
+/* card that shows results list */
+.results-card {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+}
+
+.results-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 0.75rem;
+}
+
+.results-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.results-meta {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin-top: 0.15rem;
+}
+
+.results-count {
+  font-weight: 600;
+  color: #2563eb;
+}
+
+/* each candidate row */
+.candidate-row {
+  padding: 0.6rem 0;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.candidate-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.candidate-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.candidate-party {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.candidate-stat {
+  min-width: 200px;
+  text-align: right;
+}
+
+.candidate-bar {
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: #e5e7eb;
+  overflow: hidden;
+  margin-bottom: 0.25rem;
+}
+
+.candidate-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #2563eb, #4f46e5);
+}
+
+.candidate-count {
+  font-size: 0.85rem;
+  color: #4b5563;
+}
+
+/* empty states */
+.empty-state {
+  margin-top: 1.25rem;
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+/* -------------------- Candidate & election small cards -------------------- */
+
+/* ===== Elections List Page ===== */
+
+.elections-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Each block (Active / Upcoming / Completed) */
+.elections-section {
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 1rem;
+  padding: 1.25rem 1.4rem;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+}
+
+/* Header inside each block */
+.elections-section-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin-bottom: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .elections-section-header {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+}
+
+.elections-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.elections-caption {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+/* Text when there are no elections in a section */
+.elections-empty {
+  font-size: 0.9rem;
+  color: #9ca3af;
+  padding: 0.55rem 0.8rem;
+  border-radius: 0.75rem;
+  border: 1px dashed #d1d5db;
+  background: rgba(249, 250, 251, 0.9);
+}
+
+/* Space between multiple ElectionCard components */
+.elections-section .card {
+  margin-top: 0.6rem;
+}
+
+/* slightly tighter last card spacing */
+.elections-section .card:last-of-type {
+  margin-bottom: 0.1rem;
+}
+
+/* -------------------- Small responsive tweaks -------------------- */
+
+@media (max-width: 640px) {
+  .navbar-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.55rem;
+  }
+
+  .nav-links {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .card {
+    padding: 1.1rem 1.15rem;
+  }
+}
+/* ---------- Home page specific ---------- */
+
+.home-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* hero */
+.home-hero-card {
+  padding-top: 1.4rem;
+  padding-bottom: 1.4rem;
+}
+
+.home-hero-header {
+  margin-bottom: 0.75rem;
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(37, 99, 235, 0.05);
+  color: #1d4ed8;
+  margin-bottom: 0.5rem;
+}
+
+.home-hero-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  color: #111827;
+}
+
+.home-hero-subtext {
+  font-size: 0.95rem;
+  color: #4b5563;
+}
+
+.home-hero-body {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.hero-column {
+  min-width: 0;
+}
+
+@media (min-width: 768px) {
+  .home-hero-body {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  }
+}
+
+.home-bullets {
+  list-style: none;
+  padding-left: 0;
+  font-size: 0.92rem;
+  color: #374151;
+}
+
+.home-bullets li {
+  margin-bottom: 0.5rem;
+}
+
+/* callout */
+.home-callout-card {
+  background: linear-gradient(135deg, #eef2ff, #eff6ff);
+  border-radius: 0.9rem;
+  padding: 0.9rem 1rem;
+  box-shadow: 0 10px 30px rgba(79, 70, 229, 0.15);
+  border: 1px solid rgba(191, 219, 254, 0.8);
+}
+
+.home-steps {
+  margin-top: 0.4rem;
+  padding-left: 1.1rem;
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+.home-steps li {
+  margin-bottom: 0.35rem;
+}
+
+.home-steps-footer {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+/* feature grid */
+.home-features-card {
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;
+}
+
+.home-feature-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 0.75rem;
+}
+
+@media (min-width: 900px) {
+  .home-feature-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.home-feature {
+  background: rgba(249, 250, 251, 0.9);
+  border-radius: 0.9rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(229, 231, 235, 0.9);
+}
+
+.home-feature h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  color: #111827;
+}
+
+.home-feature p {
+  font-size: 0.9rem;
+  color: #4b5563;
+  margin-bottom: 0.4rem;
+}
+
+.home-feature ul {
+  list-style: none;
+  padding-left: 0;
+  font-size: 0.88rem;
+  color: #374151;
+}
+
+.home-feature ul li {
+  margin-bottom: 0.25rem;
+}
